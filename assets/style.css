@@ -1,0 +1,68 @@
+
+.bd-shadow img {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-carousel-item {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    width: 200px;
+    margin: 10px;
+}
+
+.product-carousel-item img {
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.product-carousel-item .woocommerce-loop-product__title {
+    min-height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-carousel-item .add_to_cart_button {
+    display: block;
+    margin-top: auto;
+}
+
+
+.bd-carousel-image.bd-shadow {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease;
+}
+
+
+.bd-carousel-image.bd-shadow {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.swiper-button-prev {
+    left: -30px;
+}
+
+.swiper-button-next {
+    right: -30px;
+}

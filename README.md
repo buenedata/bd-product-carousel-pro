@@ -2,7 +2,7 @@
 
 **Modern produktkarusell for WooCommerce med BD Design Guide v3.0**
 
-## Nye funksjoner i v2.0.0
+## Nye funksjoner i v2.5.0
 
 ### 🎨 Moderne BD Design
 - Implementert komplett BD Design Guide v3.0

@@ -1,23 +1,41 @@
 # BD Product Carousel Pro
 
-A WordPress plugin that displays a responsive product carousel from WooCommerce, with options for latest, sale, featured, best-sellers, and more.
+**Modern produktkarusell for WooCommerce med BD Design Guide v3.0**
 
-## Features
+## Nye funksjoner i v2.0.0
 
-- Display latest products
-- Filter by category
-- Show sale products
-- Show featured products
-- Show best-selling products
-- Customizable sorting options
-- Shadow effects for product images
-- Responsive design
+### 🎨 Moderne BD Design
+- Implementert komplett BD Design Guide v3.0
+- Moderne gradient-baserte farger og effekter
+- Responsivt kort-basert design
+- Avanserte hover-effekter og animasjoner
+- Konsistent med andre BD-plugins
 
-## Installation
+### 🔧 Integrert BD Menu System
+- Bruker bd-menu-helper.php for unified admin opplevelse
+- Automatisk integrering i Buene Data hovedmeny
+- 🎠 ikon for enkel gjenkjenning
 
-1. Download the plugin files
-2. Upload to your WordPress `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
+### 📱 Forbedret Admin Interface
+- Moderne tab-basert grensesnitt
+- Live shortcode generering
+- Integrert dokumentasjon
+- Forbedret forhåndsvisning
+- Responsiv admin design
+
+### ⚡ Avanserte Carousel Funksjoner
+- Dynamisk hastighet per carousel
+- Forbedret touch-støtte
+- Pagination med dynamiske bullets
+- Bedre tilgjengelighet (a11y)
+- Optimalisert for mobile enheter
+
+## Installasjon og Oppsett
+
+1. Aktiver pluginen i WordPress admin
+2. Gå til **Buene Data → 🎠 Product Carousel Pro**
+3. Bruk shortcode-generatoren for å lage tilpassede karuseller
+4. Kopier og lim inn shortcode på ønsket side/innlegg
 4. Use the shortcode generator in the admin panel under "Product Carousel Pro"
 
 ## Automatic Updates via GitHub

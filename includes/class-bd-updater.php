@@ -14,8 +14,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!class_exists('BD_Plugin_Updater')) {
-class BD_Plugin_Updater {
+if (!class_exists('BD_Product_Carousel_Updater')) {
+class BD_Product_Carousel_Updater {
     private $plugin_file;
     private $github_username;
     private $github_repo;
@@ -199,7 +199,6 @@ class BD_Plugin_Updater {
                 error_log("BD Plugin Info: Returning info for {$this->plugin_slug}");
             }
         }
-        }
 
         return $result;
     }
@@ -241,4 +240,5 @@ class BD_Plugin_Updater {
         // WordPress will handle the download
         return $result;
     }
+}
 }

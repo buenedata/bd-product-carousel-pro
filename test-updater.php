@@ -56,7 +56,7 @@ if (is_wp_error($response)) {
 }
 
 // Create updater instance
-$updater = new BD_Plugin_Updater($plugin_file, 'buenedata', 'bd-product-carousel-pro');
+$updater = new BD_Product_Carousel_Updater($plugin_file, 'buenedata', 'bd-product-carousel-pro');
 
 // Test update check manually
 echo '<h3>Manual Update Check</h3>';

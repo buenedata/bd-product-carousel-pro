@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BD Product Carousel Pro
  * Description: Displays a responsive product carousel from WooCommerce, with options for latest, sale, featured, best-sellers, and more.
- * Version: 2.6.2
+ * Version: 2.6.3
  * Author: Buene Data
  * Author URI: https://buenedata.no
  * Plugin URI: https://github.com/buenedata/bd-product-carousel-pro
@@ -25,7 +25,7 @@
 defined('ABSPATH') || exit;
 
 // Plugin constants
-define('BD_PRODUCT_CAROUSEL_PRO_VERSION', '2.6.2');
+define('BD_PRODUCT_CAROUSEL_PRO_VERSION', '2.6.3');
 define('BD_PRODUCT_CAROUSEL_PRO_FILE', __FILE__);
 define('BD_PRODUCT_CAROUSEL_PRO_PATH', plugin_dir_path(__FILE__));
 define('BD_PRODUCT_CAROUSEL_PRO_URL', plugin_dir_url(__FILE__));
@@ -34,8 +34,8 @@ define('BD_PRODUCT_CAROUSEL_PRO_BASENAME', plugin_basename(__FILE__));
 // Initialize updater
 if (is_admin() && file_exists(BD_PRODUCT_CAROUSEL_PRO_PATH . 'includes/class-bd-updater.php')) {
     require_once BD_PRODUCT_CAROUSEL_PRO_PATH . 'includes/class-bd-updater.php';
-    if (class_exists('BD_Plugin_Updater')) {
-        new BD_Plugin_Updater(BD_PRODUCT_CAROUSEL_PRO_FILE, 'buenedata', 'bd-product-carousel-pro');
+    if (class_exists('BD_Product_Carousel_Updater')) {
+        new BD_Product_Carousel_Updater(BD_PRODUCT_CAROUSEL_PRO_FILE, 'buenedata', 'bd-product-carousel-pro');
     }
 }
 
@@ -128,7 +128,7 @@ function bdpc_activate_plugin() {
     
     // Set default options if they don't exist
     if (!get_option('bdpc_version')) {
-        add_option('bdpc_version', '2.6.2');
+        add_option('bdpc_version', '2.6.3');
         add_option('bdpc_activation_date', current_time('mysql'));
     }
 }

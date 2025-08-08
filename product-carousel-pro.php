@@ -2,28 +2,38 @@
 /**
  * Plugin Name: BD Product Carousel Pro
  * Description: Displays a responsive product carousel from WooCommerce, with options for latest, sale, featured, best-sellers, and more.
- * Version: 2.5.0
+ * Version: 2.6.0
  * Author: Buene Data
  * Author URI: https://buenedata.no
+ * Plugin URI: https://github.com/buenedata/bd-product-carousel-pro
+ * Update URI: https://github.com/buenedata/bd-product-carousel-pro
+ * Requires at least: 5.0
+ * Tested up to: 6.4
+ * Requires PHP: 7.4
+ * Network: false
  * Text Domain: product-carousel-pro
  * Domain Path: /languages
- * Plugin URI: https://github.com/buenedata/bd-product-carousel-pro
- * GitHub Plugin URI: buenedata/bd-product-carousel-pro
- * Primary Branch: main
  */
 
 defined('ABSPATH') || exit;
+
+// Plugin constants
+define('BD_PRODUCT_CAROUSEL_PRO_VERSION', '2.6.0');
+define('BD_PRODUCT_CAROUSEL_PRO_FILE', __FILE__);
+define('BD_PRODUCT_CAROUSEL_PRO_PATH', plugin_dir_path(__FILE__));
+define('BD_PRODUCT_CAROUSEL_PRO_URL', plugin_dir_url(__FILE__));
+define('BD_PRODUCT_CAROUSEL_PRO_BASENAME', plugin_basename(__FILE__));
+
+// Initialize updater
+if (is_admin()) {
+    require_once BD_PRODUCT_CAROUSEL_PRO_PATH . 'includes/class-bd-updater.php';
+    new BD_Plugin_Updater(BD_PRODUCT_CAROUSEL_PRO_FILE, 'buenedata', 'bd-product-carousel-pro');
+}
 
 // Include BD Menu Helper
 require_once plugin_dir_path(__FILE__) . 'bd-menu-helper.php';
 require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
 require_once plugin_dir_path(__FILE__) . 'includes/admin-page.php';
-require_once plugin_dir_path(__FILE__) . 'includes/github-updater.php';
-
-// Initialize GitHub updater
-if (is_admin()) {
-    new BD_Product_Carousel_GitHub_Updater(__FILE__, 'buenedata', 'product-carousel-pro');
-}
 
 
 function bdpc_enqueue_styles() {

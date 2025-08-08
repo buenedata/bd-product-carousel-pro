@@ -2,6 +2,31 @@
 
 All notable changes to BD Product Carousel Pro will be documented in this file.
 
+## [2.6.0] - 2025-08-08
+
+### 🚀 Modern GitHub Update System
+- **NEW:** Implemented BD GitHub Update System according to guide v1.1
+- **NEW:** Modern `BD_Plugin_Updater` class replacing old GitHub updater
+- **NEW:** GitHub Actions workflow for automatic release generation
+- **NEW:** WordPress-native update notifications and one-click updates
+- **NEW:** Automatic changelog generation from commit history
+- **NEW:** Proper Update URI in plugin header for WordPress compatibility
+- **NEW:** Secure ZIP file creation and distribution via GitHub releases
+
+### 🔧 Technical Improvements
+- **UPDATED:** Plugin header with proper WordPress update fields
+- **UPDATED:** Plugin constants for better organization
+- **REMOVED:** Old `github-updater.php` file (replaced with modern implementation)
+- **REMOVED:** Outdated `GITHUB_SETUP.md` file
+- **UPDATED:** README.md with modern update system documentation
+
+### 📋 Workflow Automation
+- **NEW:** Automatic version detection from plugin header
+- **NEW:** Release creation only when version changes
+- **NEW:** Proper file exclusions for clean plugin ZIP
+- **NEW:** Norwegian language support in release descriptions
+- **NEW:** Manual workflow dispatch option for testing
+
 ## [2.0.0] - 2025-07-23
 
 ### 🎨 Major Design Overhaul

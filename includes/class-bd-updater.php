@@ -27,7 +27,9 @@ class BD_Plugin_Updater {
         $this->github_username = $github_username;
         $this->github_repo = $github_repo;
         $this->plugin_basename = plugin_basename($plugin_file);
-        $this->plugin_slug = dirname($this->plugin_basename);
+        
+        // Fix plugin slug - use the repository name instead of directory name
+        $this->plugin_slug = $github_repo;
         
         // Get version from plugin header
         if (!function_exists('get_plugin_data')) {
@@ -40,6 +42,11 @@ class BD_Plugin_Updater {
         add_filter('pre_set_site_transient_update_plugins', [$this, 'check_for_update']);
         add_filter('plugins_api', [$this, 'plugin_info'], 20, 3);
         add_filter('upgrader_pre_download', [$this, 'download_package'], 10, 3);
+        
+        // Add debug logging
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log("BD_Plugin_Updater initialized for {$this->plugin_basename} (slug: {$this->plugin_slug}, version: {$this->version})");
+        }
     }
 
     /**
@@ -50,8 +57,17 @@ class BD_Plugin_Updater {
             return $transient;
         }
 
+        // Only check if our plugin is in the checked list
+        if (!isset($transient->checked[$this->plugin_basename])) {
+            return $transient;
+        }
+
         // Get remote version
         $remote_version = $this->get_remote_version();
+        
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log("BD Update Check: Current version: {$this->version}, Remote version: {$remote_version}");
+        }
         
         if (version_compare($this->version, $remote_version, '<')) {
             $transient->response[$this->plugin_basename] = (object) [
@@ -63,7 +79,19 @@ class BD_Plugin_Updater {
                 'tested' => '6.4',
                 'requires_php' => '7.4',
                 'compatibility' => new stdClass(),
+                'id' => $this->plugin_basename,
             ];
+            
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                error_log("BD Update Available: {$this->plugin_basename} can be updated from {$this->version} to {$remote_version}");
+            }
+        } else {
+            // Remove from response if no update needed
+            unset($transient->response[$this->plugin_basename]);
+            
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                error_log("BD Update Check: No update needed for {$this->plugin_basename}");
+            }
         }
 
         return $transient;
@@ -73,14 +101,39 @@ class BD_Plugin_Updater {
      * Get remote version from GitHub
      */
     private function get_remote_version() {
-        $request = wp_remote_get("https://api.github.com/repos/{$this->github_username}/{$this->github_repo}/releases/latest");
+        // Use transient to cache the result for 12 hours
+        $cache_key = 'bd_update_' . md5($this->plugin_basename);
+        $cached_version = get_transient($cache_key);
+        
+        if ($cached_version !== false) {
+            return $cached_version;
+        }
+        
+        $request = wp_remote_get("https://api.github.com/repos/{$this->github_username}/{$this->github_repo}/releases/latest", [
+            'timeout' => 10,
+            'headers' => [
+                'User-Agent' => 'BD-Plugin-Updater/1.0'
+            ]
+        ]);
+        
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log("BD GitHub API Request: " . wp_remote_retrieve_response_code($request));
+        }
         
         if (!is_wp_error($request) && wp_remote_retrieve_response_code($request) === 200) {
             $body = wp_remote_retrieve_body($request);
             $data = json_decode($body, true);
             
             if (isset($data['tag_name'])) {
-                return ltrim($data['tag_name'], 'v');
+                $version = ltrim($data['tag_name'], 'v');
+                // Cache for 12 hours
+                set_transient($cache_key, $version, 12 * HOUR_IN_SECONDS);
+                return $version;
+            }
+        } else {
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                $error_message = is_wp_error($request) ? $request->get_error_message() : 'HTTP ' . wp_remote_retrieve_response_code($request);
+                error_log("BD GitHub API Error: " . $error_message);
             }
         }
 
@@ -98,36 +151,81 @@ class BD_Plugin_Updater {
      * Provide plugin information for update screen
      */
     public function plugin_info($result, $action, $args) {
-        if ($action !== 'plugin_information' || $args->slug !== $this->plugin_slug) {
+        // Check if this is a request for our plugin
+        if ($action !== 'plugin_information') {
+            return $result;
+        }
+        
+        // Check if the slug matches our plugin
+        if (!isset($args->slug) || $args->slug !== $this->plugin_slug) {
             return $result;
         }
 
-        $request = wp_remote_get("https://api.github.com/repos/{$this->github_username}/{$this->github_repo}/releases/latest");
+        $request = wp_remote_get("https://api.github.com/repos/{$this->github_username}/{$this->github_repo}/releases/latest", [
+            'timeout' => 10,
+            'headers' => [
+                'User-Agent' => 'BD-Plugin-Updater/1.0'
+            ]
+        ]);
         
         if (!is_wp_error($request) && wp_remote_retrieve_response_code($request) === 200) {
             $body = wp_remote_retrieve_body($request);
             $data = json_decode($body, true);
             
             $result = (object) [
-                'name' => $data['name'] ?? $this->plugin_slug,
+                'name' => $data['name'] ?? 'BD Product Carousel Pro',
                 'slug' => $this->plugin_slug,
                 'version' => ltrim($data['tag_name'] ?? $this->version, 'v'),
-                'author' => 'Buene Data',
+                'author' => '<a href="https://buenedata.no">Buene Data</a>',
+                'author_profile' => 'https://buenedata.no',
                 'homepage' => "https://github.com/{$this->github_username}/{$this->github_repo}",
-                'short_description' => 'BD Plugin fra Buene Data',
+                'short_description' => 'Displays a responsive product carousel from WooCommerce, with options for latest, sale, featured, best-sellers, and more.',
                 'sections' => [
-                    'description' => $data['body'] ?? 'Ingen beskrivelse tilgjengelig.',
-                    'changelog' => $data['body'] ?? 'Se GitHub for endringer.',
+                    'description' => $this->format_description($data['body'] ?? 'Ingen beskrivelse tilgjengelig.'),
+                    'changelog' => $this->format_changelog($data['body'] ?? 'Se GitHub for endringer.'),
+                    'installation' => 'Last ned ZIP-filen og installer via WordPress Admin → Plugins → Legg til ny → Last opp plugin.',
                 ],
                 'download_link' => $this->get_download_url(ltrim($data['tag_name'] ?? $this->version, 'v')),
                 'requires' => '5.0',
                 'tested' => '6.4',
                 'requires_php' => '7.4',
-                'last_updated' => $data['published_at'] ?? date('Y-m-d'),
+                'last_updated' => $data['published_at'] ?? date('Y-m-d H:i:s'),
+                'active_installs' => false,
+                'downloaded' => false,
             ];
+            
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                error_log("BD Plugin Info: Returning info for {$this->plugin_slug}");
+            }
         }
 
         return $result;
+    }
+    
+    /**
+     * Format description from GitHub release
+     */
+    private function format_description($body) {
+        // Convert markdown-style formatting to HTML
+        $description = wp_kses_post($body);
+        $description = wpautop($description);
+        return $description;
+    }
+    
+    /**
+     * Format changelog from GitHub release
+     */
+    private function format_changelog($body) {
+        // Extract changelog section if it exists
+        if (strpos($body, '### Nye funksjoner og forbedringer:') !== false) {
+            $parts = explode('### Nye funksjoner og forbedringer:', $body);
+            if (isset($parts[1])) {
+                $changelog = trim(explode('###', $parts[1])[0]);
+                return wpautop(wp_kses_post($changelog));
+            }
+        }
+        
+        return wpautop(wp_kses_post($body));
     }
 
     /**

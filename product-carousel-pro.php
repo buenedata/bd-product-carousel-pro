@@ -13,8 +13,15 @@
  * Network: false
  * Text Domain: product-carousel-pro
  * Domain Path: /languages
+ *
+ * @package BD_Product_Carousel_Pro
+ * @since 1.0.0
+ *
+ * Note: Intelephense errors about undefined WordPress functions are normal
+ * when not running in WordPress environment. These are not real errors.
  */
 
+// Prevent direct access
 defined('ABSPATH') || exit;
 
 // Plugin constants
@@ -113,7 +120,7 @@ function bdpc_activate_plugin() {
     
     // Set default options if they don't exist
     if (!get_option('bdpc_version')) {
-        add_option('bdpc_version', '2.0.0');
+        add_option('bdpc_version', '2.6.0');
         add_option('bdpc_activation_date', current_time('mysql'));
     }
 }

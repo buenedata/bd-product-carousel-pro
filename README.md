@@ -36,7 +36,6 @@
 2. Gå til **Buene Data → 🎠 Product Carousel Pro**
 3. Bruk shortcode-generatoren for å lage tilpassede karuseller
 4. Kopier og lim inn shortcode på ønsket side/innlegg
-4. Use the shortcode generator in the admin panel under "Product Carousel Pro"
 
 ## 🚀 Automatisk Oppdatering via GitHub
 

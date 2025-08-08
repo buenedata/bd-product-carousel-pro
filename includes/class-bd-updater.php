@@ -2,6 +2,12 @@
 /**
  * BD Plugin Updater
  * Håndterer automatisk oppdatering via GitHub
+ *
+ * @package BD_Product_Carousel_Pro
+ * @since 2.6.0
+ *
+ * Note: Intelephense errors about undefined WordPress functions are normal
+ * when not running in WordPress environment. These are not real errors.
  */
 
 if (!defined('ABSPATH')) {

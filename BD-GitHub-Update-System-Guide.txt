@@ -722,8 +722,20 @@ LØSNING: Følgende kritiske rettelser må implementeres:
 6. CLASS CONFLICT PROBLEM:
    Problem: "Cannot declare class BD_Plugin_Updater, because the name is already in use"
    Årsak: Flere BD plugins bruker samme klasse navn
-   Løsning: Legg til class_exists sjekk:
    
+   LØSNING A - Unik klasse navn (ANBEFALT):
+   ```php
+   if (!class_exists('BD_Product_Carousel_Updater')) {
+   class BD_Product_Carousel_Updater {
+       // ... klasse innhold ...
+   }
+   }
+   
+   // I hovedfilen:
+   new BD_Product_Carousel_Updater(__FILE__, 'buenedata', 'repository-name');
+   ```
+   
+   LØSNING B - Delt klasse med sjekk:
    ```php
    if (!class_exists('BD_Plugin_Updater')) {
    class BD_Plugin_Updater {
@@ -731,6 +743,8 @@ LØSNING: Følgende kritiske rettelser må implementeres:
    }
    }
    ```
+   
+   ANBEFALING: Bruk unik klasse navn for hver plugin for å unngå konflikter.
 
 TESTING PROSEDYRE:
 1. Opprett test-updater.php for å teste systemet

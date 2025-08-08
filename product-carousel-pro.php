@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BD Product Carousel Pro
  * Description: Displays a responsive product carousel from WooCommerce, with options for latest, sale, featured, best-sellers, and more.
- * Version: 2.6.1
+ * Version: 2.6.0
  * Author: Buene Data
  * Author URI: https://buenedata.no
  * Plugin URI: https://github.com/buenedata/bd-product-carousel-pro
@@ -25,7 +25,7 @@
 defined('ABSPATH') || exit;
 
 // Plugin constants
-define('BD_PRODUCT_CAROUSEL_PRO_VERSION', '2.6.1');
+define('BD_PRODUCT_CAROUSEL_PRO_VERSION', '2.6.0');
 define('BD_PRODUCT_CAROUSEL_PRO_FILE', __FILE__);
 define('BD_PRODUCT_CAROUSEL_PRO_PATH', plugin_dir_path(__FILE__));
 define('BD_PRODUCT_CAROUSEL_PRO_URL', plugin_dir_url(__FILE__));

@@ -31,3 +31,22 @@ vendor/
 *.bak
 *.backup
 *~
+
+# Debug files (production cleanup)
+debug-*.php
+test-*.php
+*debug.log
+
+# Development files
+BD-GitHub-Update-System-Guide.txt
+BD-Plugin-Design-Guide.txt
+*.md.backup
+
+# GitHub workflow debug files
+DEBUG-WORKFLOW.md
+DEPLOYMENT-GUIDE.md
+GITHUB-ACTIONS-FIX.md
+PRIVATE-REPO-SOLUTION.md
+QUICK-DEBUG-GUIDE.md
+TESTING-INSTRUCTIONS.md
+SUCCESS-INSTRUCTIONS.md

@@ -2,7 +2,15 @@
 
 **Modern produktkarusell for WooCommerce med BD Design Guide v3.0**
 
-## Nye funksjoner i v2.6.0
+## Nye funksjoner i v2.7.0
+
+### 🚀 Production Ready
+- Komplett implementering av BD GitHub Update System
+- Produksjonsklart med automatisk oppdatering
+- Opprydding av debug-filer og utviklingsressurser
+- Optimalisert .gitignore for produksjon
+
+## Funksjoner fra v2.6.0
 
 ### 🎨 Moderne BD Design
 - Implementert komplett BD Design Guide v3.0
@@ -69,12 +77,20 @@ Pluginet er nå konfigurert med:
 
 For å lage en ny versjon:
 
-1. Oppdater versjonsnummer i `product-carousel-pro.php`
+1. Oppdater versjonsnummer i [`product-carousel-pro.php`](product-carousel-pro.php:5)
 2. Commit og push endringene til GitHub
 3. GitHub Actions lager automatisk en release med:
-   - ZIP-fil av pluginet
+   - ZIP-fil av pluginet (uten debug-filer)
    - Automatisk generert changelog
    - Versjonstagging
+
+### 🔧 Tekniske Detaljer
+
+- **Versjon**: 2.7.0
+- **WordPress kompatibilitet**: 5.0+
+- **PHP krav**: 7.4+
+- **Testet opp til**: WordPress 6.4
+- **Update system**: BD GitHub Update System v1.2
 
 ### 📖 Dokumentasjon
 

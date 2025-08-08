@@ -96,6 +96,16 @@ jobs:
           --exclude='webpack.config.js' \
           --exclude='gulpfile.js' \
           --exclude='Gruntfile.js' \
+          --exclude='debug-*.php' \
+          --exclude='test-*.php' \
+          --exclude='BD-*-Guide.txt' \
+          --exclude='DEBUG-*.md' \
+          --exclude='DEPLOYMENT-*.md' \
+          --exclude='GITHUB-*.md' \
+          --exclude='PRIVATE-*.md' \
+          --exclude='QUICK-*.md' \
+          --exclude='TESTING-*.md' \
+          --exclude='SUCCESS-*.md' \
           . temp/$REPO_NAME/
         
         cd temp

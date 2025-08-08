@@ -719,11 +719,25 @@ LØSNING: Følgende kritiske rettelser må implementeres:
    }
    ```
 
+6. CLASS CONFLICT PROBLEM:
+   Problem: "Cannot declare class BD_Plugin_Updater, because the name is already in use"
+   Årsak: Flere BD plugins bruker samme klasse navn
+   Løsning: Legg til class_exists sjekk:
+   
+   ```php
+   if (!class_exists('BD_Plugin_Updater')) {
+   class BD_Plugin_Updater {
+       // ... klasse innhold ...
+   }
+   }
+   ```
+
 TESTING PROSEDYRE:
 1. Opprett test-updater.php for å teste systemet
 2. Øk versjonsnummer i plugin header for å simulere oppdatering
-3. Sjekk debug.log for feilmeldinger
+3. Sjekk debug.log for feilmeldinger (spesielt class conflicts)
 4. Verifiser at GitHub API returnerer riktig data
+5. Test med flere BD plugins aktivert samtidig
 
 ================================================================================
 CHANGELOG
@@ -787,6 +801,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!class_exists('BD_Plugin_Updater')) {
 class BD_Plugin_Updater {
     private $plugin_file;
     private $github_username;
@@ -981,6 +996,7 @@ class BD_Plugin_Updater {
 
         return $result;
     }
+}
 }
 ```
 

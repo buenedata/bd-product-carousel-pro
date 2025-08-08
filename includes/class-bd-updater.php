@@ -14,6 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!class_exists('BD_Plugin_Updater')) {
 class BD_Plugin_Updater {
     private $plugin_file;
     private $github_username;
@@ -197,6 +198,7 @@ class BD_Plugin_Updater {
             if (defined('WP_DEBUG') && WP_DEBUG) {
                 error_log("BD Plugin Info: Returning info for {$this->plugin_slug}");
             }
+        }
         }
 
         return $result;

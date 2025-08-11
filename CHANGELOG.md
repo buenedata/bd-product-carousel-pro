@@ -2,6 +2,20 @@
 
 All notable changes to BD Product Carousel Pro will be documented in this file.
 
+## [2.7.1] - 2025-08-11
+
+### 🎨 Admin Interface Improvements
+- **IMPROVED:** Enhanced spacing and layout in admin interface
+- **IMPROVED:** Better visual hierarchy with increased section padding (35px → 50px)
+- **IMPROVED:** Improved form organization with structured section wrappers
+- **IMPROVED:** Enhanced input and select field styling with better padding and focus states
+- **IMPROVED:** Better visual separation between form sections and groups
+- **IMPROVED:** Improved radio and checkbox group styling with enhanced spacing
+- **IMPROVED:** Enhanced shortcode output section with visual indicators
+- **IMPROVED:** Better alignment in input rows and form elements
+- **IMPROVED:** Added emoji icons to section headers for better visual identification
+- **IMPROVED:** Cleaner overall layout with improved margins and gaps
+
 ## [2.6.0] - 2025-08-08
 
 ### 🚀 Modern GitHub Update System

@@ -43,96 +43,111 @@ function pc_render_carousel_admin_page() {
                 <h3>Produktutvalg</h3>
                 <form id="carousel-settings" class="bd-settings-grid">
                     <div class="bd-form-group">
-                        <label class="bd-radio-group">
-                            <input type="radio" name="mode" value="latest" checked>
-                            <span class="bd-radio-label">
-                                <strong>Nyeste produkter</strong>
-                                <small>Viser de nyeste produktene i butikken automatisk</small>
-                            </span>
-                        </label>
-                        
-                        <label class="bd-radio-group">
-                            <input type="radio" name="mode" value="category">
-                            <span class="bd-radio-label">
-                                <strong>Fra kategori</strong>
-                                <small>Velg en spesifikk produktkategori</small>
-                            </span>
-                        </label>
-                        <select name="category" class="bd-select">
-                            <?php foreach ($categories as $cat): ?>
-                                <option value="<?= esc_attr($cat->slug) ?>"><?= esc_html($cat->name) ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="bd-form-section">
+                            <label class="bd-radio-group">
+                                <input type="radio" name="mode" value="latest" checked>
+                                <span class="bd-radio-label">
+                                    <strong>Nyeste produkter</strong>
+                                    <small>Viser de nyeste produktene i butikken automatisk</small>
+                                </span>
+                            </label>
+                            
+                            <label class="bd-radio-group">
+                                <input type="radio" name="mode" value="category">
+                                <span class="bd-radio-label">
+                                    <strong>Fra kategori</strong>
+                                    <small>Velg en spesifikk produktkategori</small>
+                                </span>
+                            </label>
+                            
+                            <div class="bd-category-select">
+                                <label for="category" class="bd-label">Velg kategori</label>
+                                <select name="category" class="bd-select">
+                                    <option value="">Ukategorisert</option>
+                                    <?php foreach ($categories as $cat): ?>
+                                        <option value="<?= esc_attr($cat->slug) ?>"><?= esc_html($cat->name) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="bd-form-group">
                         <h4>Produktfiltre</h4>
-                        <label class="bd-checkbox-group">
-                            <input type="checkbox" name="sale">
-                            <span class="bd-checkbox-label">
-                                <strong>På salg</strong>
-                                <small>Vis kun produkter som er på salg</small>
-                            </span>
-                        </label>
-                        
-                        <label class="bd-checkbox-group">
-                            <input type="checkbox" name="featured">
-                            <span class="bd-checkbox-label">
-                                <strong>Fremhevet</strong>
-                                <small>Vis kun produkter som er merket som fremhevet</small>
-                            </span>
-                        </label>
-                        
-                        <label class="bd-checkbox-group">
-                            <input type="checkbox" name="best_sellers">
-                            <span class="bd-checkbox-label">
-                                <strong>Bestselgere</strong>
-                                <small>Vis produkter sortert etter mest solgte</small>
-                            </span>
-                        </label>
+                        <div class="bd-form-section">
+                            <label class="bd-checkbox-group">
+                                <input type="checkbox" name="sale">
+                                <span class="bd-checkbox-label">
+                                    <strong>På salg</strong>
+                                    <small>Vis kun produkter som er på salg</small>
+                                </span>
+                            </label>
+                            
+                            <label class="bd-checkbox-group">
+                                <input type="checkbox" name="featured">
+                                <span class="bd-checkbox-label">
+                                    <strong>Fremhevet</strong>
+                                    <small>Vis kun produkter som er merket som fremhevet</small>
+                                </span>
+                            </label>
+                            
+                            <label class="bd-checkbox-group">
+                                <input type="checkbox" name="best_sellers">
+                                <span class="bd-checkbox-label">
+                                    <strong>Bestselgere</strong>
+                                    <small>Vis produkter sortert etter mest solgte</small>
+                                </span>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="bd-form-group">
                         <h4>Sortering</h4>
-                        <div class="bd-input-row">
-                            <div>
-                                <label for="orderby" class="bd-label">Sorter etter</label>
-                                <select name="orderby" class="bd-select">
-                                    <option value="">Standard</option>
-                                    <option value="price">Pris</option>
-                                    <option value="date">Dato</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="order" class="bd-label">Rekkefølge</label>
-                                <select name="order" class="bd-select">
-                                    <option value="DESC">Synkende</option>
-                                    <option value="ASC">Stigende</option>
-                                </select>
+                        <div class="bd-form-section">
+                            <div class="bd-input-row">
+                                <div>
+                                    <label for="orderby" class="bd-label">Sorter etter</label>
+                                    <select name="orderby" class="bd-select">
+                                        <option value="">Standard</option>
+                                        <option value="price">Pris</option>
+                                        <option value="date">Dato</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="order" class="bd-label">Rekkefølge</label>
+                                    <select name="order" class="bd-select">
+                                        <option value="DESC">Synkende</option>
+                                        <option value="ASC">Stigende</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="bd-form-group">
                         <h4>Visningsinnstillinger</h4>
-                        <div class="bd-input-row">
-                            <div>
-                                <label for="limit" class="bd-label">Antall produkter</label>
-                                <input type="number" name="limit" value="6" min="1" max="100" class="bd-input">
+                        <div class="bd-form-section">
+                            <div class="bd-input-row">
+                                <div>
+                                    <label for="limit" class="bd-label">Antall produkter</label>
+                                    <input type="number" name="limit" value="6" min="1" max="100" class="bd-input">
+                                </div>
+                                <div>
+                                    <label for="speed" class="bd-label">Karusellhastighet (sekunder)</label>
+                                    <input type="number" name="speed" id="carousel-speed" min="1" step="1" value="3" class="bd-input">
+                                </div>
                             </div>
-                            <div>
-                                <label for="speed" class="bd-label">Karusellhastighet (sekunder)</label>
-                                <input type="number" name="speed" id="carousel-speed" min="1" step="1" value="3" class="bd-input">
+                            
+                            <div style="margin-top: 25px;">
+                                <label class="bd-checkbox-group">
+                                    <input type="checkbox" id="shadow-checkbox" name="shadow" value="true">
+                                    <span class="bd-checkbox-label">
+                                        <strong>Skyggeeffekt</strong>
+                                        <small>Legg til visuell skygge bak produktbilder</small>
+                                    </span>
+                                </label>
                             </div>
                         </div>
-                        
-                        <label class="bd-checkbox-group">
-                            <input type="checkbox" id="shadow-checkbox" name="shadow" value="true">
-                            <span class="bd-checkbox-label">
-                                <strong>Skyggeeffekt</strong>
-                                <small>Legg til visuell skygge bak produktbilder</small>
-                            </span>
-                        </label>
                     </div>
                 </form>
             </div>
@@ -321,11 +336,11 @@ function pc_render_carousel_admin_page() {
         /* Settings Sections */
         .bd-settings-section {
             margin-bottom: 50px;
-            padding: 35px;
+            padding: 50px;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(226, 232, 240, 0.6);
             position: relative;
             overflow: hidden;
         }
@@ -336,139 +351,195 @@ function pc_render_carousel_admin_page() {
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 5px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
 
         .bd-settings-section h3 {
-            margin: 0 0 25px 0;
+            margin: 0 0 40px 0;
             color: #1a202c;
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: 700;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #e2e8f0;
             position: relative;
         }
 
         .bd-settings-section h3::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -3px;
             left: 0;
-            width: 60px;
-            height: 2px;
+            width: 100px;
+            height: 3px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
 
         .bd-settings-section h4 {
             color: #374151;
-            font-size: 1.1em;
+            font-size: 1.3em;
             font-weight: 600;
-            margin: 0 0 15px 0;
+            margin: 35px 0 25px 0;
+            padding: 20px 0 15px 0;
+            border-bottom: 2px solid #f1f5f9;
+            position: relative;
+        }
+
+        .bd-settings-section h4::before {
+            content: '⚙️';
+            margin-right: 10px;
+            font-size: 1.1em;
         }
 
         /* Form Elements */
         .bd-settings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 50px;
         }
 
         .bd-form-group {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 25px;
+            padding: 35px;
+            background: rgba(248, 250, 252, 0.7);
+            border-radius: 16px;
+            border: 2px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .bd-input-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 30px;
+            align-items: end;
         }
 
         .bd-label {
             font-weight: 600;
             color: #374151;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: block;
+            font-size: 14px;
         }
 
         .bd-input, .bd-select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             transition: all 0.3s ease;
             background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .bd-input:focus, .bd-select:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 2px 8px rgba(0,0,0,0.05);
+            transform: translateY(-1px);
         }
 
         /* Radio and Checkbox Groups */
         .bd-radio-group, .bd-checkbox-group {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 15px;
+            gap: 15px;
+            padding: 20px;
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 12px;
             transition: all 0.3s ease;
             cursor: pointer;
+            margin-bottom: 15px;
+            background: white;
         }
 
         .bd-radio-group:hover, .bd-checkbox-group:hover {
             border-color: #667eea;
-            background: rgba(102, 126, 234, 0.02);
+            background: rgba(102, 126, 234, 0.03);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
         }
 
         .bd-radio-group input, .bd-checkbox-group input {
             margin: 0;
             accent-color: #667eea;
+            transform: scale(1.2);
         }
 
         .bd-radio-label, .bd-checkbox-label {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .bd-radio-label strong, .bd-checkbox-label strong {
             color: #374151;
             font-weight: 600;
+            font-size: 15px;
         }
 
         .bd-radio-label small, .bd-checkbox-label small {
             color: #64748b;
             font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Form Section Wrapper */
+        .bd-form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Category Select Styling */
+        .bd-category-select {
+            padding: 15px;
+            background: rgba(241, 245, 249, 0.5);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
         }
 
         /* Shortcode Output */
         .bd-shortcode-output {
             background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .bd-shortcode-output::before {
+            content: '📋';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 16px;
+            border: 2px solid #e2e8f0;
         }
 
         .bd-shortcode-output code {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 14px;
+            font-size: 15px;
             color: #374151;
             font-weight: 600;
             background: none;
             padding: 0;
+            display: block;
+            word-break: break-all;
         }
 
         .bd-help-text {
             color: #64748b;
             font-size: 14px;
-            margin: 10px 0;
+            margin: 15px 0;
+            line-height: 1.5;
         }
 
         /* Documentation */
@@ -550,22 +621,48 @@ function pc_render_carousel_admin_page() {
         /* Responsive Design */
         @media (max-width: 768px) {
             .bd-product-carousel-admin {
-                padding: 15px;
+                padding: 20px;
             }
             
             .bd-admin-header {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
-                padding: 30px 20px;
+                gap: 25px;
+                padding: 35px 25px;
             }
             
-            .bd-settings-grid {
-                grid-template-columns: 1fr;
+            .bd-settings-section {
+                padding: 25px;
+                margin-bottom: 30px;
+            }
+            
+            .bd-form-group {
+                padding: 20px;
+                gap: 15px;
             }
             
             .bd-input-row {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .bd-settings-section h4 {
+                margin: 20px 0 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bd-settings-section {
+                padding: 20px;
+            }
+            
+            .bd-form-group {
+                padding: 15px;
+            }
+            
+            .bd-radio-group, .bd-checkbox-group {
+                padding: 15px;
+                gap: 12px;
             }
         }
     </style>

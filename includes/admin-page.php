@@ -138,7 +138,7 @@ function pc_render_carousel_admin_page() {
                                 </div>
                             </div>
                             
-                            <div style="margin-top: 25px;">
+                            <div style="margin-top: 12px;">
                                 <label class="bd-checkbox-group">
                                     <input type="checkbox" id="shadow-checkbox" name="shadow" value="true">
                                     <span class="bd-checkbox-label">
@@ -335,11 +335,11 @@ function pc_render_carousel_admin_page() {
 
         /* Settings Sections */
         .bd-settings-section {
-            margin-bottom: 50px;
-            padding: 50px;
+            margin-bottom: 25px;
+            padding: 25px;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             border: 1px solid rgba(226, 232, 240, 0.6);
             position: relative;
             overflow: hidden;
@@ -351,182 +351,180 @@ function pc_render_carousel_admin_page() {
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
+            height: 3px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
 
         .bd-settings-section h3 {
-            margin: 0 0 40px 0;
+            margin: 0 0 20px 0;
             color: #1a202c;
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: 700;
-            padding-bottom: 25px;
-            border-bottom: 3px solid #e2e8f0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
             position: relative;
         }
 
         .bd-settings-section h3::after {
             content: '';
             position: absolute;
-            bottom: -3px;
+            bottom: -2px;
             left: 0;
-            width: 100px;
-            height: 3px;
+            width: 60px;
+            height: 2px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
 
         .bd-settings-section h4 {
             color: #374151;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: 600;
-            margin: 35px 0 25px 0;
-            padding: 20px 0 15px 0;
-            border-bottom: 2px solid #f1f5f9;
+            margin: 20px 0 12px 0;
+            padding: 8px 0 6px 0;
+            border-bottom: 1px solid #f1f5f9;
             position: relative;
         }
 
         .bd-settings-section h4::before {
             content: '⚙️';
-            margin-right: 10px;
-            font-size: 1.1em;
+            margin-right: 8px;
+            font-size: 0.9em;
         }
 
         /* Form Elements */
         .bd-settings-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 50px;
+            gap: 20px;
         }
 
         .bd-form-group {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            padding: 35px;
-            background: rgba(248, 250, 252, 0.7);
-            border-radius: 16px;
-            border: 2px solid rgba(226, 232, 240, 0.5);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            gap: 15px;
+            padding: 20px;
+            background: rgba(248, 250, 252, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(226, 232, 240, 0.4);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
         .bd-input-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
             align-items: end;
         }
 
         .bd-label {
             font-weight: 600;
             color: #374151;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             display: block;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .bd-input, .bd-select {
             width: 100%;
-            padding: 14px 18px;
+            padding: 10px 14px;
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 14px;
             transition: all 0.3s ease;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         .bd-input:focus, .bd-select:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 2px 8px rgba(0,0,0,0.05);
-            transform: translateY(-1px);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         /* Radio and Checkbox Groups */
         .bd-radio-group, .bd-checkbox-group {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            padding: 20px;
+            gap: 12px;
+            padding: 12px 16px;
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 8px;
             transition: all 0.3s ease;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             background: white;
         }
 
         .bd-radio-group:hover, .bd-checkbox-group:hover {
             border-color: #667eea;
-            background: rgba(102, 126, 234, 0.03);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+            background: rgba(102, 126, 234, 0.02);
         }
 
         .bd-radio-group input, .bd-checkbox-group input {
             margin: 0;
             accent-color: #667eea;
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
         .bd-radio-label, .bd-checkbox-label {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .bd-radio-label strong, .bd-checkbox-label strong {
             color: #374151;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .bd-radio-label small, .bd-checkbox-label small {
             color: #64748b;
-            font-size: 13px;
-            line-height: 1.4;
+            font-size: 12px;
+            line-height: 1.3;
         }
 
         /* Form Section Wrapper */
         .bd-form-section {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         /* Category Select Styling */
         .bd-category-select {
-            padding: 15px;
-            background: rgba(241, 245, 249, 0.5);
-            border-radius: 8px;
+            padding: 12px;
+            background: rgba(241, 245, 249, 0.3);
+            border-radius: 6px;
             border: 1px solid #e2e8f0;
+            margin-top: 8px;
         }
 
         /* Shortcode Output */
         .bd-shortcode-output {
             background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 25px 0;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
             position: relative;
         }
 
         .bd-shortcode-output::before {
             content: '📋';
             position: absolute;
-            top: -10px;
-            left: 20px;
+            top: -8px;
+            left: 16px;
             background: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 16px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 14px;
             border: 2px solid #e2e8f0;
         }
 
         .bd-shortcode-output code {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 15px;
+            font-size: 14px;
             color: #374151;
             font-weight: 600;
             background: none;
@@ -537,9 +535,9 @@ function pc_render_carousel_admin_page() {
 
         .bd-help-text {
             color: #64748b;
-            font-size: 14px;
-            margin: 15px 0;
-            line-height: 1.5;
+            font-size: 13px;
+            margin: 10px 0;
+            line-height: 1.4;
         }
 
         /* Documentation */
